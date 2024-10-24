@@ -1,47 +1,41 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div
+    class="background-custom w-full h-[100%] flex justify-center items-center"
+  >
+    <div
+      class="p-4 bg-neutral-600 flex flex-col justify-around items-center w-[20%] h-[50%] max-w-[350px] min-w-[250px] rounded-lg"
+    >
+      <div class="text-3xl text-slate-50 flex">Авторизация</div>
+      <div class="flex flex-col justify-between">
+        <div class="flex flex-col items-center">
+          <myInput class="mb-3" placeholder="Логин" />
+          <myInput placeholder="Пароль" type="password" />
+        </div>
+        <myButton text="Войти" />
+      </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup>
+import myInput from './components/myInput.vue'
+import myButton from './components/myButton.vue'
+</script>
+
+<style>
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.background-custom {
+  background: rgb(17, 17, 17);
+  background: linear-gradient(
+    135deg,
+    rgba(17, 17, 17, 1) 0%,
+    rgba(41, 41, 41, 1) 100%
+  );
 }
 </style>
