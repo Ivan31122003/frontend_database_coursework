@@ -17,7 +17,6 @@ export const auth = async (login, password) => {
       login,
       password,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
