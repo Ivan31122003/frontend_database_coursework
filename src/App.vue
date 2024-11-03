@@ -3,15 +3,19 @@
 </template>
 
 <script setup>
-  import { onMounted } from 'vue';
+  import { onMounted, watch } from 'vue';
   import router from '@/router.js';
   import { getCookie } from '@/cookie.js';
 
   onMounted(() => {
+    checkCookie();
+  });
+
+  const checkCookie = () => {
     if (getCookie('token') === undefined) {
       router.push({ name: 'LoginForm' });
     }
-  });
+  };
 </script>
 
 <style>

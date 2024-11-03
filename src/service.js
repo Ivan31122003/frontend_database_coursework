@@ -11,10 +11,10 @@ export const getRequest = async () => {
   }
 };
 
-export const auth = async (login, password) => {
+export const auth = async (username, password) => {
   try {
     const response = await axios.post('http://localhost:3000/auth', {
-      login,
+      username,
       password,
     });
     return response.data;
