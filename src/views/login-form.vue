@@ -10,7 +10,7 @@
       <div class="flex flex-col justify-between">
         <div class="flex flex-col items-center">
           <input
-            v-model="authData.login"
+            v-model="authData.username"
             placeholder="Логин"
             type="text"
             class="m-2 p-3 w-[250px] h-[35px] rounded-xl"
@@ -41,12 +41,12 @@
 
   const message = ref(null);
   const authData = reactive({
-    login: null,
+    username: null,
     password: null,
   });
 
   const sendAuthData = async () => {
-    const response = await auth(authData.login, authData.password);
+    const response = await auth(authData.username, authData.password);
     if (response?.success) {
       setCookie('token', response.token);
       router.push({ name: 'MainPage' });
