@@ -6,7 +6,6 @@
       class="p-4 bg-neutral-600 flex flex-col justify-around items-center h-[50%] w-[350px] rounded-lg"
     >
       <div class="text-3xl text-slate-50 flex">Авторизация</div>
-      <div class="text-3xl text-slate-50 flex">{{ message }}</div>
       <div class="flex flex-col justify-between">
         <div class="flex flex-col items-center">
           <input
@@ -38,8 +37,9 @@
   import router from '@/router';
   import { auth } from '@/service.js';
   import { reactive, ref } from 'vue';
+  import Noty from 'noty';
+  import 'noty/lib/noty.css';
 
-  const message = ref(null);
   const authData = reactive({
     username: null,
     password: null,
@@ -51,7 +51,12 @@
       setCookie('token', response.token);
       router.push({ name: 'MainPage' });
     } else {
-      message.value = 'Неверный логин или пароль';
+      new Noty({
+        text: 'Неверный логин или пароль',
+        type: 'error',
+        layout: 'topLeft',
+        timeout: 3000,
+      }).show();
     }
   };
 </script>
