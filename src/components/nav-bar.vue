@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full h-[150px] flex justify-center border-b-[1px]">
+  <div class="w-full h-[150px] flex justify-center border-b-[1px] z-0">
     <div class="flex w-[1200px] justify-between items-center border-b-1">
       <div class="flex justify-between">
         <div
-          class="bg-transparent border-solid border-2 border-gray-300 rounded-md w-[230px] h-[100px] mx-3 p-[10px] flex justify-center items-center text-center text-slate-100 text-xl hover:bg-slate-600 cursor-pointer"
+          class="bg-transparent border-solid border-2 border-gray-300 rounded-md w-[230px] h-[100px] mx-3 p-[10px] flex justify-center items-center text-center text-slate-100 text-xl hover:bg-white hover:text-black hover:font-medium transition duration-200 cursor-pointer"
           v-for="(item, index) in navElements"
           @click="() => router.push({ name: item.routeName })"
           :key="index"

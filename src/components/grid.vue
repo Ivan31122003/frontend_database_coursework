@@ -1,7 +1,15 @@
 <template>
-  <div class="p-4 flex justify-center">
+  <div class="w-[1200px] pt-8 flex flex-col items-center">
+    <div class="w-full">
+      <button
+        class="px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
+        @click="() => emit('createNewRow')"
+      >
+        Добавить
+      </button>
+    </div>
     <table
-      class="mt-4 w-[1200px] border-collapse border border-gray-300 text-gray-300"
+      class="w-[1200px] mt-4 border-collapse border border-gray-300 text-gray-300"
     >
       <thead>
         <tr>
@@ -34,6 +42,8 @@
 </template>
 
 <script setup>
+  const emit = defineEmits(['createNewRow']);
+
   const props = defineProps({
     headers: {
       type: Array,
