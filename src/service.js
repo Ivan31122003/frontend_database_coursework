@@ -13,11 +13,9 @@ export const getRequest = async () => {
 
 export const auth = async (username, password) => {
   try {
-    const token = getCookie('token');
     const response = await axios.post('http://localhost:3000/api/auth', {
       username,
       password,
-      token,
     });
     return response.data;
   } catch (error) {

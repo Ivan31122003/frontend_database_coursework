@@ -23,6 +23,8 @@ const state = reactive({
     headers: [],
     rows: [],
   },
+  newRow: {},
+  isCreateButtonClick: false,
 });
 
 const getEmployeesList = async () => {
@@ -30,6 +32,9 @@ const getEmployeesList = async () => {
   if (response?.success) {
     state.employees.headers = response.items.headers;
     state.employees.rows = response.items.body;
+    return true;
+  } else if (response?.access) {
+    return false;
   }
 };
 
@@ -38,6 +43,9 @@ const getDepartmentsList = async () => {
   if (response?.success) {
     state.departments.headers = response.items.headers;
     state.departments.rows = response.items.body;
+    return true;
+  } else if (response?.access) {
+    return false;
   }
 };
 
@@ -46,6 +54,9 @@ const getDepartmentsEmployeesList = async () => {
   if (response?.success) {
     state.departments_employees.headers = response.items.headers;
     state.departments_employees.rows = response.items.body;
+    return true;
+  } else if (response?.access) {
+    return false;
   }
 };
 
@@ -54,6 +65,9 @@ const getUsersList = async () => {
   if (response?.success) {
     state.users.headers = response.items.headers;
     state.users.rows = response.items.body;
+    return true;
+  } else if (response?.access) {
+    return false;
   }
 };
 
