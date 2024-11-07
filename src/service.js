@@ -40,6 +40,24 @@ export const getEmployees = async () => {
   }
 };
 
+export const putEmployees = async (employee) => {
+  try {
+    const token = getCookie('token');
+    const response = await axios.post(
+      'http://localhost:3000/api/employees/put',
+      {
+        token,
+        employee,
+      }
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return 'Error';
+  }
+};
+
 export const getDepartments = async () => {
   try {
     const token = getCookie('token');
