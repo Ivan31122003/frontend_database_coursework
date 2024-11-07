@@ -28,6 +28,7 @@
         <button
           class="w-[150px] px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
           @click="() => emit('addNewRow')"
+          :disabled="true"
         >
           Добавить
         </button>
