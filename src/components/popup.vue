@@ -18,19 +18,18 @@
           />
         </div>
       </div>
-      <div class="w-[60%] flex justify-between">
+      <div class="w-[80%] flex justify-between">
         <button
-          class="w-[150px] px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
+          class="w-[200px] px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
           @click="cancel"
         >
           Отмена
         </button>
         <button
-          class="w-[150px] px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
-          @click="() => emit('addNewRow')"
-          :disabled="true"
+          class="w-[200px] px-[20px] py-[2px] text-xl text-slate-50 rounded-xl border-solid border-white border-[1px] hover:bg-white hover:text-black transition duration-200"
+          @click="emit('buttonClick')"
         >
-          Добавить
+          {{ props.buttonText }}
         </button>
       </div>
     </div>
@@ -39,13 +38,19 @@
 
 <script setup>
   import store from '@/store.js';
-
   const { state } = store;
 
-  const emit = defineEmits(['addNewRow']);
+  const props = defineProps({
+    buttonText: {
+      type: String,
+      default: () => {},
+    },
+  });
+
+  const emit = defineEmits(['buttonClick']);
 
   const cancel = () => {
     state.newRow = {};
-    state.isCreateButtonClick = false;
+    state.isButtonClick = false;
   };
 </script>

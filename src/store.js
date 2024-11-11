@@ -2,6 +2,7 @@ import { reactive } from 'vue';
 import {
   getEmployees,
   getDepartments,
+  getProjects,
   getDepartmentsEmployees,
   getUsers,
 } from '@/service.js';
@@ -15,6 +16,10 @@ const state = reactive({
     headers: [],
     rows: [],
   },
+  projects: {
+    headers: [],
+    rows: [],
+  },
   departments_employees: {
     headers: [],
     rows: [],
@@ -24,7 +29,9 @@ const state = reactive({
     rows: [],
   },
   newRow: {},
+  isButtonClick: false,
   isCreateButtonClick: false,
+  selectedRows: [],
 });
 
 const getEmployeesList = async () => {
@@ -43,6 +50,17 @@ const getDepartmentsList = async () => {
   if (response?.success) {
     state.departments.headers = response.items.headers;
     state.departments.rows = response.items.body;
+    return true;
+  } else if (response?.access) {
+    return false;
+  }
+};
+
+const getProjectsList = async () => {
+  const response = await getProjects();
+  if (response?.success) {
+    state.projects.headers = response.items.headers;
+    state.projects.rows = response.items.body;
     return true;
   } else if (response?.access) {
     return false;
@@ -75,6 +93,7 @@ export default {
   state,
   getEmployeesList,
   getDepartmentsList,
+  getProjectsList,
   getDepartmentsEmployeesList,
   getUsersList,
 };

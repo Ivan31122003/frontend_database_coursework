@@ -25,13 +25,10 @@
     height: 100%;
     margin: 0;
   }
-
+  body {
+    background: rgba(41, 41, 41, 1);
+  }
   .background-custom {
-    background: rgb(17, 17, 17);
-    background: linear-gradient(
-      135deg,
-      rgba(17, 17, 17, 1) 0%,
-      rgba(41, 41, 41, 1) 100%
-    );
+    background: rgba(41, 41, 41, 1);
   }
 </style>
