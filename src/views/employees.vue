@@ -7,6 +7,7 @@
       @buttonClick="popupButtonClick"
     />
     <grid
+      v-if="response"
       :headers="state.employees.headers"
       :rows="state.employees.rows"
       @createRow="createEmployeeButtonClick"
@@ -26,7 +27,7 @@
   import store from '@/store.js';
   const { state, getEmployeesList } = store;
 
-  const response = ref('false');
+  const response = ref(false);
   const buttonText = ref();
 
   onMounted(async () => {

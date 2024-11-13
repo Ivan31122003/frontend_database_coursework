@@ -27,11 +27,15 @@
   import store from '@/store.js';
   const { state, getProjectsList } = store;
 
-  const response = ref('false');
+  const response = ref(false);
   const buttonText = ref();
 
   onMounted(async () => {
     response.value = await getProjectsList();
+    // state.projects = {
+    //   headers: [],
+    //   rows: [],
+    // };
     if (!response.value) {
       createNotify('error', 'У вас нет доступа');
     }
@@ -69,10 +73,12 @@
       return;
     } else if (result.success === false) {
       createNotify('error', 'Ошибка');
-
+      return;
+    } else if (result?.error) {
+      createNotify('error', result.error);
       return;
     }
-    createNotify('success', 'Выделенные сотрудники успешно удалены');
+    createNotify('success', 'Выделенные проекты успешно удалены');
     state.selectedRows = [];
     await getProjectsList();
   };
@@ -83,7 +89,10 @@
 
   const createProject = async () => {
     for (const key in state.newRow) {
-      if (state.newRow[key] === null || state.newRow[key] === '') {
+      if (
+        (state.newRow[key] === null || state.newRow[key] === '') &&
+        key !== 'date_end_real'
+      ) {
         createNotify('error', 'Не все поля заполены');
         return;
       }
