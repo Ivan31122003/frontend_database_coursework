@@ -7,6 +7,7 @@
       @buttonClick="popupButtonClick"
     />
     <grid
+      v-if="response"
       :headers="state.departments.headers"
       :rows="state.departments.rows"
       @createRow="createDepartmentButtonClick"
@@ -30,7 +31,7 @@
   import store from '@/store.js';
   const { state, getDepartmentsList } = store;
 
-  const response = ref('false');
+  const response = ref(false);
   const buttonText = ref();
 
   onMounted(async () => {
