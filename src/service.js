@@ -287,3 +287,19 @@ export const getUsers = async () => {
     return 'Error fetching data';
   }
 };
+
+export const getEmployeeProject = async () => {
+  try {
+    const token = getCookie('token');
+    const response = await axios.post(
+      'http://localhost:3000/api/employees_projects/get',
+      {
+        token,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return 'Error fetching data';
+  }
+};
