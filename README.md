@@ -1,29 +1,97 @@
-# frontend_database_coursework
+# Система управления сотрудниками и проектами
 
-This template should help get you started developing with Vue 3 in Vite.
+Фронтенд учебного проекта по дисциплине «Системы управления базами данных». Приложение предоставляет пользовательский интерфейс для работы с данными организации: сотрудниками, отделами, проектами и связями между ними.
 
-## Recommended IDE Setup
+Проект демонстрирует разработку одностраничного приложения на Vue, интеграцию с REST API, реализацию CRUD-операций, авторизации и экспорта данных.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Возможности
 
-## Customize configuration
+- авторизация пользователя через API с сохранением токена в cookie;
+- просмотр и управление данными о сотрудниках, отделах и проектах;
+- создание, редактирование и массовое удаление записей;
+- работа со связью «сотрудник — отдел»;
+- ограничение интерфейса при отсутствии прав доступа, определяемых API;
+- уведомления об успешных операциях и ошибках;
+- экспорт таблицы «сотрудники — проекты» в файл Excel (`.xlsx`);
+- навигация между разделами без перезагрузки страницы.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Стек
 
-## Project Setup
+| Назначение | Технологии |
+| --- | --- |
+| Фреймворк | Vue 3, Composition API |
+| Сборка | Vite |
+| Маршрутизация | Vue Router |
+| HTTP-клиент | Axios |
+| Стилизация | Tailwind CSS, PostCSS |
+| Уведомления | Noty, Toastr |
+| Экспорт таблиц | SheetJS (`xlsx`) |
 
-```sh
-npm install
+## Структура проекта
+
+```text
+src/
+├── components/       # Переиспользуемые компоненты: навигация, таблица, модальное окно
+├── views/            # Страницы приложения
+├── App.vue           # Корневой компонент и проверка авторизации
+├── router.js         # Маршруты приложения
+├── service.js        # Запросы к REST API
+├── store.js          # Реактивное состояние данных таблиц
+├── cookie.js         # Работа с cookie токена
+└── notify.js         # Отображение уведомлений
 ```
 
-### Compile and Hot-Reload for Development
+## Быстрый запуск
 
-```sh
+### Требования
+
+- Node.js и npm;
+- запущенный сервер API на `http://localhost:3000`;
+- доступ к базе данных на стороне бэкенда.
+
+### Установка и запуск
+
+```bash
+git clone https://github.com/Ivan31122003/frontend_database_coursework.git
+cd frontend_database_coursework
+npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+После запуска Vite выведет локальный адрес приложения в терминале, обычно `http://localhost:5173`.
 
-```sh
+### Сборка для production
+
+```bash
 npm run build
 ```
+
+Готовая статическая сборка будет размещена в каталоге `dist/`.
+
+## Интеграция с API
+
+Этот репозиторий содержит только клиентскую часть. Для полноценной работы требуется совместимый бэкенд с API на `http://localhost:3000`.
+
+Клиент использует следующие группы конечных точек:
+
+- `POST /api/auth` — авторизация;
+- `POST /api/employees/{get|put|update|delete}` — работа с сотрудниками;
+- `POST /api/departments/{get|put|update|delete}` — работа с отделами;
+- `POST /api/projects/{get|put|update|delete}` — работа с проектами;
+- `POST /api/departments_employees/{get|put|update|delete}` — связь сотрудников с отделами;
+- `POST /api/users/get` — просмотр пользователей в разделе администрирования;
+- `POST /api/employees_projects/get` — данные для выгрузки в Excel.
+
+Адрес API сейчас задан напрямую в [`src/service.js`](src/service.js). Для развёртывания в другой среде его следует вынести в конфигурацию окружения.
+
+## Доступные команды
+
+| Команда | Назначение |
+| --- | --- |
+| `npm run dev` | Запуск сервера разработки с горячей перезагрузкой |
+| `npm run build` | Создание production-сборки |
+| `npm run preview` | Локальный просмотр production-сборки |
+
+## Статус
+
+Учебный проект. Бэкенд и база данных в этот репозиторий не входят.
